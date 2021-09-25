@@ -1,4 +1,5 @@
 import 'package:cozy/models/city.dart';
+import 'package:cozy/models/space.dart';
 import 'package:cozy/theme.dart';
 import 'package:cozy/widget/city_card.dart';
 import 'package:cozy/widget/space_card.dart';
@@ -86,15 +87,128 @@ class HomePage extends StatelessWidget {
               ),
               Column(
                 children: [
-                  SpaceCard(),
-                  SpaceCard(),
-                  SpaceCard(),
-                  SpaceCard(),
-                  SpaceCard(),
+                  SpaceCard(
+                    Space(
+                      1,
+                      'Kuretakeso Hott',
+                      52,
+                      'assets/image_space_1.png',
+                      'Bandung, Germany',
+                    ),
+                  ),
+                  SpaceCard(
+                    Space(
+                      1,
+                      'Roemah Nenek',
+                      52,
+                      'assets/image_space_2.png',
+                      'Seaatle, Germany',
+                    ),
+                  ),
+                  SpaceCard(
+                    Space(
+                      1,
+                      'Kuretakeso Hott',
+                      52,
+                      'assets/image_space_3.png',
+                      'Bandung, Germany',
+                    ),
+                  ),
                 ],
               )
             ],
           ),
+        ),
+      );
+    }
+
+    Widget tipsAndGuidance() {
+      return Container(
+        padding: EdgeInsets.only(top: 30, left: defaultMargin),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Tips & Guidance',
+              style: categoryTextStyle,
+            ),
+            SizedBox(height: 16),
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      width: 80,
+                      height: 80,
+                      child: Image.asset('assets/image_tips_1.png'),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'City Guidlines',
+                                style: namePlaceTextStyle,
+                              ),
+                              Text(
+                                'Updated 20 Apr',
+                                style: locationTextStyle,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.chevron_right),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 16),
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      width: 80,
+                      height: 80,
+                      child: Image.asset('assets/image_tips_2.png'),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Jakarta Fairship',
+                                style: namePlaceTextStyle,
+                              ),
+                              Text(
+                                'Updated 20 Apr',
+                                style: locationTextStyle,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.chevron_right),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
       );
     }
@@ -106,6 +220,7 @@ class HomePage extends StatelessWidget {
           header(),
           popularCities(),
           recommenSpace(),
+          tipsAndGuidance()
         ],
       ),
     );
