@@ -1,3 +1,4 @@
+import 'package:cozy/pages/home_page.dart';
 import 'package:cozy/pages/started_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(routes: {
       '/': (context) => StartedPage(),
+      '/home-page': (context) => HomePage(),
     });
   }
 }
