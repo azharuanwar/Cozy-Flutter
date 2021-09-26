@@ -5,7 +5,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/azharuanwar/">
-    <img src="assets/logo.png" alt="Logo" width="130" height="150">
+    <img src="assets/logo.png" alt="Logo" width="130" height="130">
   </a>
 
   <h3 align="center">Cozy Beautifull UI</h3>
