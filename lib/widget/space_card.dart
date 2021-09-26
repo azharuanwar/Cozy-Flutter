@@ -1,6 +1,7 @@
 import 'package:cozy/models/space.dart';
 import 'package:cozy/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SpaceCard extends StatelessWidget {
   // const SpaceCard({Key? key}) : super(key: key);
@@ -18,9 +19,41 @@ class SpaceCard extends StatelessWidget {
             child: Container(
               width: 130,
               height: 110,
-              child: Image.asset(
-                space.imgUrl!,
-                fit: BoxFit.cover,
+              child: Stack(
+                children: [
+                  Image.asset(
+                    space.imgUrl!,
+                    fit: BoxFit.cover,
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      width: 70,
+                      height: 30,
+                      decoration: BoxDecoration(
+                          color: purpleColor,
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(30))),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/icon_star.png',
+                              width: 18,
+                              height: 18,
+                            ),
+                            Text(
+                              '4/5',
+                              style: GoogleFonts.poppins(
+                                  fontSize: 13, color: whiteColor),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
