@@ -8,6 +8,7 @@ Color blackColor = Color(0xff000000);
 Color greyColor = Color(0xff7A7E86);
 
 double defaultMargin = 24;
+int edge = 24;
 
 // TextStyle
 TextStyle titleTextStyle = GoogleFonts.poppins(
