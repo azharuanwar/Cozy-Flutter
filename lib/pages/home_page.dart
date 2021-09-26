@@ -2,12 +2,11 @@ import 'package:cozy/models/city.dart';
 import 'package:cozy/models/space.dart';
 import 'package:cozy/theme.dart';
 import 'package:cozy/widget/city_card.dart';
+import 'package:cozy/widget/customNavBar.dart';
 import 'package:cozy/widget/space_card.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Widget header() {
@@ -162,6 +161,7 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                     ),
+                    Spacer(),
                     IconButton(
                       onPressed: () {},
                       icon: Icon(Icons.chevron_right),
@@ -200,6 +200,7 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                     ),
+                    Spacer(),
                     IconButton(
                       onPressed: () {},
                       icon: Icon(Icons.chevron_right),
@@ -213,6 +214,42 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    Widget customNavBar() {
+      return Container(
+        padding: EdgeInsets.only(left: 30, right: 30),
+        height: 65,
+        width: MediaQuery.of(context).size.width - (2 * defaultMargin),
+        margin: EdgeInsets.symmetric(
+          horizontal: defaultMargin,
+        ),
+        decoration: BoxDecoration(
+          color: Color(0xffF6F7F8),
+          borderRadius: BorderRadius.circular(23),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomNavBar(
+              imgUrl: 'assets/icon_home.png',
+              isActive: true,
+            ),
+            CustomNavBar(
+              imgUrl: 'assets/icon_message.png',
+              isActive: false,
+            ),
+            CustomNavBar(
+              imgUrl: 'assets/icon_card.png',
+              isActive: false,
+            ),
+            CustomNavBar(
+              imgUrl: 'assets/icon_wishlist.png',
+              isActive: false,
+            ),
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: whiteColor,
       body: ListView(
@@ -220,9 +257,11 @@ class HomePage extends StatelessWidget {
           header(),
           popularCities(),
           recommenSpace(),
-          tipsAndGuidance()
+          tipsAndGuidance(),
         ],
       ),
+      floatingActionButton: customNavBar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
