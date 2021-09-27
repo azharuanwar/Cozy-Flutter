@@ -1,6 +1,7 @@
 // import 'package:cozy/theme.dart';
 import 'package:cozy/models/facilities.dart';
 import 'package:cozy/models/photos_models.dart';
+import 'package:cozy/models/space.dart';
 import 'package:cozy/pages/book_cozy.dart';
 import 'package:cozy/pages/error_page.dart';
 import 'package:cozy/theme.dart';
@@ -19,6 +20,9 @@ class DetailPage extends StatelessWidget {
     }
   }
 
+  final Space space;
+  DetailPage(this.space);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,10 +30,11 @@ class DetailPage extends StatelessWidget {
         bottom: false,
         child: Stack(
           children: [
-            Image.asset(
-              'assets/thumbnail.png',
+            Image.network(
+              space.imgUrl!,
               width: MediaQuery.of(context).size.width,
               height: 350,
+              fit: BoxFit.cover,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 30),
@@ -38,7 +43,12 @@ class DetailPage extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pop(context, true);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailPage(space),
+                        ),
+                      );
                     },
                     child: Image.asset(
                       'assets/icon_back.png',
@@ -80,13 +90,19 @@ class DetailPage extends StatelessWidget {
                                 SizedBox(
                                   height: 30,
                                 ),
-                                Text(
-                                  'Kuretakeso Hott',
-                                  style: titleTextStyle,
+                                SizedBox(
+                                  width: 218,
+                                  child: Text(
+                                    '${space.name}',
+                                    style: titleTextStyle,
+                                    softWrap: false,
+                                    overflow: TextOverflow.fade,
+                                    maxLines: 1,
+                                  ),
                                 ),
                                 RichText(
                                   text: TextSpan(
-                                    text: '\$52',
+                                    text: '\$${space.price}',
                                     style: priceTextStyle,
                                     children: [
                                       TextSpan(
@@ -138,16 +154,18 @@ class DetailPage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 MainFacilities(
-                                  Facilities(
-                                      'Kitchen', 'assets/icon_bar.png', 3),
+                                  Facilities('Kitchen', 'assets/icon_bar.png',
+                                      space.numberOfKitchens),
+                                ),
+                                MainFacilities(
+                                  Facilities('Bedroom', 'assets/icon_bed.png',
+                                      space.numberOfBedrooms),
                                 ),
                                 MainFacilities(
                                   Facilities(
-                                      'Bedroom', 'assets/icon_bed.png', 3),
-                                ),
-                                MainFacilities(
-                                  Facilities(
-                                      'Lemari', 'assets/icon_cupboard.png', 3),
+                                      'Lemari',
+                                      'assets/icon_cupboard.png',
+                                      space.numberOfCupboards),
                                 ),
                               ],
                             ),
@@ -203,7 +221,7 @@ class DetailPage extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Jln. Kappan Sukses No. 20 Palembang',
+                                      '${space.address}',
                                       style: fontNormal.copyWith(
                                           fontSize: 14, color: greyColor),
                                       maxLines: 1,
@@ -211,8 +229,7 @@ class DetailPage extends StatelessWidget {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        launch(
-                                            'https://goo.gl/maps/BwWTu4HhiyHzRxsy6');
+                                        launch('${space.mapUrl}');
                                       },
                                       child: Image.asset(
                                         'assets/icon_pin.png',
