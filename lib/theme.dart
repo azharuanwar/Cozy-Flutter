@@ -32,3 +32,5 @@ TextStyle locationTextStyle = GoogleFonts.poppins(
 
 TextStyle priceTextStyle = GoogleFonts.poppins(
     fontSize: 16, fontWeight: FontWeight.w600, color: purpleColor);
+
+TextStyle fontNormal = GoogleFonts.poppins(color: blackColor);

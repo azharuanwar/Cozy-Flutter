@@ -1,5 +1,9 @@
 // import 'package:cozy/theme.dart';
+import 'package:cozy/models/facilities.dart';
+import 'package:cozy/models/photos_models.dart';
 import 'package:cozy/theme.dart';
+import 'package:cozy/widget/main_facilities.dart';
+import 'package:cozy/widget/photos_card.dart';
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatelessWidget {
@@ -39,6 +43,7 @@ class DetailPage extends StatelessWidget {
               ),
             ),
             ListView(
+              // padding: EdgeInsets.symmetric(horizontal: 24),
               children: [
                 SizedBox(
                   height: 328,
@@ -54,9 +59,40 @@ class DetailPage extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Column(
                       children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Text(
+                                  'Kuretakeso Hott',
+                                  style: titleTextStyle,
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    text: '\$52',
+                                    style: priceTextStyle,
+                                    children: [
+                                      TextSpan(
+                                          text: ' / month',
+                                          style: locationTextStyle)
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Image.asset(
+                              'assets/rate_star.png',
+                              width: 108,
+                            )
+                          ],
+                        ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -64,26 +100,116 @@ class DetailPage extends StatelessWidget {
                               height: 30,
                             ),
                             Text(
-                              'Kuretakeso Hott',
-                              style: titleTextStyle,
+                              'Main Facilities',
+                              style: fontNormal.copyWith(fontSize: 16),
                             ),
-                            RichText(
-                              text: TextSpan(
-                                text: '\$52',
-                                style: priceTextStyle,
-                                children: [
-                                  TextSpan(
-                                      text: ' / month',
-                                      style: locationTextStyle)
-                                ],
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                MainFacilities(
+                                  Facilities(
+                                      'Kitchen', 'assets/icon_bar.png', 3),
+                                ),
+                                MainFacilities(
+                                  Facilities(
+                                      'Bedroom', 'assets/icon_bed.png', 3),
+                                ),
+                                MainFacilities(
+                                  Facilities(
+                                      'Lemari', 'assets/icon_cupboard.png', 3),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Photos',
+                                  style: fontNormal.copyWith(fontSize: 16),
+                                ),
+                                SizedBox(
+                                  height: 12,
+                                ),
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: [
+                                      Photos(
+                                        PhotosModels(
+                                            'assets/photo_highlight_1.png'),
+                                      ),
+                                      Photos(
+                                        PhotosModels(
+                                            'assets/photo_highlight_2.png'),
+                                      ),
+                                      Photos(
+                                        PhotosModels(
+                                            'assets/photo_highlight_3.png'),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Location',
+                                  style: fontNormal.copyWith(fontSize: 16),
+                                ),
+                                SizedBox(
+                                  height: 6,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Jln. Kappan Sukses No. 20 Palembang',
+                                      style: fontNormal.copyWith(
+                                          fontSize: 14, color: greyColor),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.fade,
+                                    ),
+                                    Image.asset(
+                                      'assets/icon_pin.png',
+                                      width: 40,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 40,
+                            ),
+                            Container(
+                              height: 50,
+                              width:
+                                  MediaQuery.of(context).size.width - (2 * 24),
+                              // color: purpleColor,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(40),
+                                color: purpleColor,
                               ),
+                              child: TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    'Book Now',
+                                    style: fontNormal.copyWith(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                        color: whiteColor),
+                                  )),
                             ),
                           ],
                         ),
-                        Image.asset(
-                          'assets/rate_star.png',
-                          width: 108,
-                        )
                       ],
                     ),
                   ),
