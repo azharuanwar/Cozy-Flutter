@@ -1,6 +1,7 @@
 // import 'package:cozy/theme.dart';
 import 'package:cozy/models/facilities.dart';
 import 'package:cozy/models/photos_models.dart';
+import 'package:cozy/pages/book_cozy.dart';
 import 'package:cozy/theme.dart';
 import 'package:cozy/widget/main_facilities.dart';
 import 'package:cozy/widget/photos_card.dart';
@@ -199,7 +200,13 @@ class DetailPage extends StatelessWidget {
                                 color: purpleColor,
                               ),
                               child: TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => BookCozy()),
+                                    );
+                                  },
                                   child: Text(
                                     'Book Now',
                                     style: fontNormal.copyWith(
