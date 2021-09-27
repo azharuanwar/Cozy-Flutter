@@ -2,13 +2,22 @@
 import 'package:cozy/models/facilities.dart';
 import 'package:cozy/models/photos_models.dart';
 import 'package:cozy/pages/book_cozy.dart';
+import 'package:cozy/pages/error_page.dart';
 import 'package:cozy/theme.dart';
 import 'package:cozy/widget/main_facilities.dart';
 import 'package:cozy/widget/photos_card.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
   // const DetailPage({Key? key}) : super(key: key);
+  lauchUrl(String url) async {
+    if (await canLaunch(url)) {
+      launch(url);
+    } else {
+      throw (url);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -179,9 +188,15 @@ class DetailPage extends StatelessWidget {
                                       maxLines: 1,
                                       overflow: TextOverflow.fade,
                                     ),
-                                    Image.asset(
-                                      'assets/icon_pin.png',
-                                      width: 40,
+                                    InkWell(
+                                      onTap: () {
+                                        launch(
+                                            'https://goo.gl/maps/BwWTu4HhiyHzRxsy6');
+                                      },
+                                      child: Image.asset(
+                                        'assets/icon_pin.png',
+                                        width: 40,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -190,6 +205,8 @@ class DetailPage extends StatelessWidget {
                             SizedBox(
                               height: 40,
                             ),
+
+                            //* BUTTON
                             Container(
                               height: 50,
                               width:
@@ -204,7 +221,7 @@ class DetailPage extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => BookCozy()),
+                                          builder: (context) => ErrorPage()),
                                     );
                                   },
                                   child: Text(
