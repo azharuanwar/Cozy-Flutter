@@ -36,7 +36,7 @@ class DetailPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  InkWell(
+                  GestureDetector(
                     onTap: () {
                       Navigator.pop(context, true);
                     },
@@ -97,10 +97,31 @@ class DetailPage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Image.asset(
-                              'assets/rate_star.png',
-                              width: 108,
-                            )
+                            Row(
+                              children: [
+                                Image.asset(
+                                  'assets/icon_star_1.png',
+                                  width: 20,
+                                ),
+                                Image.asset(
+                                  'assets/icon_star_1.png',
+                                  width: 20,
+                                ),
+                                Image.asset(
+                                  'assets/icon_star_1.png',
+                                  width: 20,
+                                ),
+                                Image.asset(
+                                  'assets/icon_star_1.png',
+                                  width: 20,
+                                ),
+                                Image.asset(
+                                  'assets/icon_star_1.png',
+                                  width: 20,
+                                  color: Color(0xff989BA1),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                         Column(

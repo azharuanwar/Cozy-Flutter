@@ -31,7 +31,7 @@ class SpaceCard extends StatelessWidget {
                 height: 110,
                 child: Stack(
                   children: [
-                    Image.asset(
+                    Image.network(
                       space.imgUrl!,
                       fit: BoxFit.cover,
                     ),
@@ -89,7 +89,7 @@ class SpaceCard extends StatelessWidget {
                     height: 16,
                   ),
                   Text(
-                    space.location!,
+                    '${space.country}',
                     style: locationTextStyle,
                   )
                 ],

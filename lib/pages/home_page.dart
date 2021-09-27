@@ -1,14 +1,19 @@
 import 'package:cozy/models/city.dart';
 import 'package:cozy/models/space.dart';
+import 'package:cozy/provider/space_providers.dart';
 import 'package:cozy/theme.dart';
 import 'package:cozy/widget/city_card.dart';
 import 'package:cozy/widget/customNavBar.dart';
 import 'package:cozy/widget/space_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var spaceProvider = Provider.of<SpaceProvider>(context);
+    spaceProvider.getRecommendedSpaces();
+
     Widget header() {
       return SafeArea(
         child: Container(
@@ -84,37 +89,22 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: 16,
               ),
-              Column(
-                children: [
-                  SpaceCard(
-                    Space(
-                      1,
-                      'Kuretakeso Hott',
-                      52,
-                      'assets/image_space_1.png',
-                      'Bandung, Germany',
+              FutureBuilder(
+                future: spaceProvider.getRecommendedSpaces(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    List<Space> data = snapshot.data;
+                    return Column(
+                      children: data.map((item) => SpaceCard(item)).toList(),
+                    );
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 3,
                     ),
-                  ),
-                  SpaceCard(
-                    Space(
-                      1,
-                      'Roemah Nenek',
-                      52,
-                      'assets/image_space_2.png',
-                      'Seaatle, Germany',
-                    ),
-                  ),
-                  SpaceCard(
-                    Space(
-                      1,
-                      'Kuretakeso Hott',
-                      52,
-                      'assets/image_space_3.png',
-                      'Bandung, Germany',
-                    ),
-                  ),
-                ],
-              )
+                  );
+                },
+              ),
             ],
           ),
         ),
