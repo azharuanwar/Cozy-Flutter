@@ -40,35 +40,37 @@ class HomePage extends StatelessWidget {
 
     Widget popularCities() {
       return Container(
-        padding: EdgeInsets.only(left: defaultMargin, top: 30),
+        padding: EdgeInsets.only(top: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Popular Cities',
-              style: categoryTextStyle,
+            Padding(
+              padding: EdgeInsets.only(left: defaultMargin),
+              child: Text(
+                'Popular Cities',
+                style: categoryTextStyle,
+              ),
             ),
             SizedBox(
               height: 16,
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  CityCard(City(1, 'Jakarta', 'assets/image_popular_1.png')),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  CityCard(City(2, 'Bandung', 'assets/image_popular_2.png')),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  CityCard(City(3, 'Bandung', 'assets/image_popular_3.png')),
-                  SizedBox(
-                    width: 20,
-                  ),
-                ],
-              ),
+              padding: EdgeInsets.only(left: defaultMargin),
+              child: FutureBuilder(
+                  future: spaceProvider.getRecommendedSpaces(),
+                  builder: (context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasData) {
+                      List<Space> city = snapshot.data;
+                      return Row(
+                        children:
+                            city.map((element) => CityCard(element)).toList(),
+                      );
+                    }
+                    return CircularProgressIndicator(
+                      strokeWidth: 3,
+                    );
+                  }),
             ),
           ],
         ),
@@ -198,6 +200,10 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ],
+            ),
+            Container(
+              width: 100,
+              height: 100,
             ),
           ],
         ),

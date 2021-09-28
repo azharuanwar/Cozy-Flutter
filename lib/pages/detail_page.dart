@@ -4,9 +4,11 @@ import 'package:cozy/models/photos_models.dart';
 import 'package:cozy/models/space.dart';
 import 'package:cozy/pages/book_cozy.dart';
 import 'package:cozy/pages/error_page.dart';
+import 'package:cozy/pages/home_page.dart';
 import 'package:cozy/theme.dart';
 import 'package:cozy/widget/main_facilities.dart';
 import 'package:cozy/widget/photos_card.dart';
+import 'package:cozy/widget/rating_rate.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -46,7 +48,7 @@ class DetailPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DetailPage(space),
+                          builder: (context) => HomePage(),
                         ),
                       );
                     },
@@ -114,29 +116,11 @@ class DetailPage extends StatelessWidget {
                               ],
                             ),
                             Row(
-                              children: [
-                                Image.asset(
-                                  'assets/icon_star_1.png',
-                                  width: 20,
-                                ),
-                                Image.asset(
-                                  'assets/icon_star_1.png',
-                                  width: 20,
-                                ),
-                                Image.asset(
-                                  'assets/icon_star_1.png',
-                                  width: 20,
-                                ),
-                                Image.asset(
-                                  'assets/icon_star_1.png',
-                                  width: 20,
-                                ),
-                                Image.asset(
-                                  'assets/icon_star_1.png',
-                                  width: 20,
-                                  color: Color(0xff989BA1),
-                                ),
-                              ],
+                              children: [1, 2, 3, 4, 5].map((index) {
+                                return Container(
+                                  child: RatingRate(index, space.rating),
+                                );
+                              }).toList(),
                             ),
                           ],
                         ),

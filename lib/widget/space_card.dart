@@ -56,7 +56,7 @@ class SpaceCard extends StatelessWidget {
                                 height: 18,
                               ),
                               Text(
-                                '4/5',
+                                '${space.rating}/5',
                                 style: GoogleFonts.poppins(
                                     fontSize: 13, color: whiteColor),
                               ),
